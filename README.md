@@ -47,6 +47,14 @@ npx expo start
 Scan QR with Expo Go. For a physical phone, set `EXPO_PUBLIC_API_URL` to your computer's LAN IP, e.g. `http://192.168.1.5:5000` (not localhost).
 For production builds, configure EAS and platform credentials.
 
+## Deploy the web demo to Render
+1. Connect your GitHub account to Render and create a Blueprint from the `main` branch of this repository.
+2. When prompted, enter your MongoDB Atlas connection string for `MONGO_URI` in Render. Do not commit it to GitHub. Render generates `JWT_SECRET` automatically.
+3. Deploy both services. The website is served at `https://balliago-web-abhi221718.onrender.com`; the API health check is at `https://balliago-api-abhi221718.onrender.com/api/health`.
+4. Ensure your Atlas network access list allows connections from Render without exposing the database broadly.
+
+The free API service can sleep when idle, so the first request after inactivity may take a little while. The mobile app is not published by this web deployment; set `EXPO_PUBLIC_API_URL` to the deployed API URL before testing it with Expo.
+
 ## Demo flow
 1. Register a user in the website or mobile app.
 2. Login and request a ride using pickup/drop labels and vehicle type.
